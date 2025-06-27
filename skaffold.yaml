@@ -8,8 +8,13 @@ build:
       context: .
       docker:
         dockerfile: Dockerfile
+  local:
+    push: false
 manifests:
   helm:
     releases:
       - name: app
         chartPath: ./app
+        setValues:
+          image: "{{ .IMAGE_FULLY_QUALIFIED_kubectl_argo_rollouts }}"
+          namespace: "{{ .NAMESPACE }}"

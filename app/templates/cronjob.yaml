@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "{{ .Chart.Name }}-cronjob"
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: "{{ .Chart.Name }}-sa"
+          containers:
+          - name: {{ .Chart.Name }}
+            image: {{ .Values.image }}
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/bash
+            - -c
+            - kubectl argo rollouts restart {{ .Chart.Name }}
+          restartPolicy: OnFailure
