@@ -1,0 +1,15 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: api
+build:
+  artifacts:
+    - image: kubectl-argo-rollouts
+      context: .
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  helm:
+    releases:
+      - name: app
+        chartPath: ./app
