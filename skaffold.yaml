@@ -15,6 +15,5 @@ manifests:
     releases:
       - name: app
         chartPath: ./app
-        setValues:
+        setValueTemplates:
           image: "{{ .IMAGE_FULLY_QUALIFIED_kubectl_argo_rollouts }}"
-          namespace: "{{ .NAMESPACE }}"

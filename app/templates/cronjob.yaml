@@ -10,8 +10,8 @@ spec:
         spec:
           serviceAccountName: "{{ .Chart.Name }}-sa"
           containers:
-          - name: {{ .Chart.Name }}
-            image: {{ .Values.image }}
+          - name: "{{ .Chart.Name }}"
+            image: "{{ .Values.image }}"
             imagePullPolicy: IfNotPresent
             command:
             - /bin/bash
